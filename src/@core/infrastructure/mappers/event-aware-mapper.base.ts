@@ -2,11 +2,10 @@ import { AggregateRoot } from '../../domain/aggregate-root.base';
 import { Mapper } from './mapper.base';
 import { EventAwareMapper } from './mapper.interface';
 
-export abstract class EventAwareMapperBase<
-  Domain extends AggregateRoot,
-  Orm
-> extends Mapper<Domain, Orm> implements EventAwareMapper<Domain, Orm> {
-  
+export abstract class EventAwareMapperBase<Domain extends AggregateRoot, Orm>
+  extends Mapper<Domain, Orm>
+  implements EventAwareMapper<Domain, Orm>
+{
   toDomainWithEvents(ormEntity: Orm): Domain {
     const domain = this.toDomain(ormEntity);
     // Marquer les événements comme committed car ils viennent de la DB
@@ -27,13 +26,13 @@ export abstract class EventAwareMapperBase<
   toOrmWithEventHandling(domainEntity: Domain): Orm {
     // Récupérer les événements avant le mapping
     const events = this.handleEventsBeforePersistence(domainEntity);
-    
+
     // Mapper vers ORM
     const ormEntity = this.toOrm(domainEntity);
-    
+
     // Marquer les événements comme committed
     domainEntity.markEventsAsCommitted();
-    
+
     return ormEntity;
   }
 }

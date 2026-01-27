@@ -49,7 +49,7 @@ import { throttlerConfig } from './config/throttler.config';
 
     // Core modules
     CoreModule,
-    
+
     // Business modules
     UserModule,
     HealthModule,

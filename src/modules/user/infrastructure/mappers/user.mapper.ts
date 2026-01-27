@@ -3,7 +3,11 @@ import { EventAwareMapperBase } from '../../../../@core/infrastructure/mappers/e
 import { User, UserProps } from '../../domain/entities/user.entity';
 import { UserOrmEntity } from '../orm-entities/user.orm-entity';
 import { Email } from '../../domain/value-objects/email.value-object';
-import { EntityProps, OrmEntityProps, OrmMapperBase } from '@core/infrastructure/mappers/orm-mapper.base';
+import {
+  EntityProps,
+  OrmEntityProps,
+  OrmMapperBase,
+} from '@core/infrastructure/mappers/orm-mapper.base';
 import { UUID } from '@core/domain';
 
 @Injectable()

@@ -20,21 +20,18 @@ const commandHandlers = [CreateUserHandler];
 const queryHandlers = [GetUserHandler];
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([UserOrmEntity]),
-    CqrsModule,
-  ],
+  imports: [TypeOrmModule.forFeature([UserOrmEntity]), CqrsModule],
   controllers: [UserController],
   providers: [
     // Mappers
     UserMapper,
-    
+
     // Repositories
     {
       provide: 'UserRepository',
       useClass: TypeOrmUserRepository,
     },
-    
+
     // CQRS Handlers
     ...commandHandlers,
     ...queryHandlers,
