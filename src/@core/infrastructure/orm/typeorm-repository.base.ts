@@ -87,7 +87,7 @@ export abstract class TypeormRepositoryBase<
 
   async findManyBy(
     where?: FindOptionsWhere<OrmEntity> | FindOptionsWhere<OrmEntity>[],
-    options: FindManyOptions<OrmEntity> = {}
+    options: FindManyOptions<OrmEntity> = {},
   ): Promise<Entity[]> {
     const { relations, lock, ...rest } = options;
 

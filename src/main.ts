@@ -3,7 +3,7 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import helmet from 'helmet';
-import compression from 'compression';
+import compression = require('compression');
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './@core/infrastructure/filters/global-exception.filter';
 import { ResponseInterceptor } from './@core/infrastructure/interceptors/response.interceptor';
@@ -23,9 +23,8 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: process.env.NODE_ENV === 'production' 
-      ? ['https://yourdomain.com'] 
-      : true,
+    origin:
+      process.env.NODE_ENV === 'production' ? ['https://yourdomain.com'] : true,
     credentials: true,
   });
 
@@ -78,7 +77,9 @@ async function bootstrap() {
 
   logger.log(`🚀 Application is running on: http://localhost:${port}`);
   logger.log(`📚 Swagger docs available at: http://localhost:${port}/api/docs`);
-  logger.log(`🏥 Health check available at: http://localhost:${port}/api/v1/health`);
+  logger.log(
+    `🏥 Health check available at: http://localhost:${port}/api/v1/health`,
+  );
 }
 
 bootstrap().catch((error) => {

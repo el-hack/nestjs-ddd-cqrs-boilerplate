@@ -21,18 +21,15 @@ export class LoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
 
-    this.logger.log(
-      `Incoming Request: ${method} ${url}`,
-      {
-        method,
-        url,
-        userAgent,
-        ip,
-        body: this.sanitizeBody(body),
-        query,
-        params,
-      },
-    );
+    this.logger.log(`Incoming Request: ${method} ${url}`, {
+      method,
+      url,
+      userAgent,
+      ip,
+      body: this.sanitizeBody(body),
+      query,
+      params,
+    });
 
     return next.handle().pipe(
       tap(() => {

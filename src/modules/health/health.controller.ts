@@ -26,18 +26,19 @@ export class HealthController {
     return this.health.check([
       // Database health
       () => this.db.pingCheck('database'),
-      
+
       // Memory health (heap should not use more than 150MB)
       () => this.memory.checkHeap('memory_heap', 150 * 1024 * 1024),
-      
+
       // Memory health (RSS should not use more than 150MB)
       () => this.memory.checkRSS('memory_rss', 150 * 1024 * 1024),
-      
+
       // Disk health (should not use more than 75% of available space)
-      () => this.disk.checkStorage('storage', {
-        path: '/',
-        thresholdPercent: 0.75,
-      }),
+      () =>
+        this.disk.checkStorage('storage', {
+          path: '/',
+          thresholdPercent: 0.75,
+        }),
     ]);
   }
 
@@ -46,9 +47,7 @@ export class HealthController {
   @ApiResponse({ status: 200, description: 'Application is ready' })
   @HealthCheck()
   readiness() {
-    return this.health.check([
-      () => this.db.pingCheck('database'),
-    ]);
+    return this.health.check([() => this.db.pingCheck('database')]);
   }
 
   @Get('live')

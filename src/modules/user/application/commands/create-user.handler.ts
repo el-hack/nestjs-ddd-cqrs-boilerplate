@@ -7,7 +7,10 @@ import { User } from '../../domain/entities/user.entity';
 import { Email } from '../../domain/value-objects/email.value-object';
 
 @CommandHandler(CreateUserCommand)
-export class CreateUserHandler extends BaseCommandHandler<CreateUserCommand, User> {
+export class CreateUserHandler extends BaseCommandHandler<
+  CreateUserCommand,
+  User
+> {
   constructor(
     @Inject('UserRepository')
     private readonly userRepository: UserRepository,

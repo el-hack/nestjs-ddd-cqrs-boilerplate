@@ -16,7 +16,7 @@ export class Email extends ValueObject<EmailProps> {
 
   protected validate(props: EmailProps): void {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     if (!props.value) {
       throw new Error('Email is required');
     }

@@ -1,4 +1,4 @@
-import { AggregateRoot, ID } from "@core/domain";
+import { AggregateRoot, ID } from '@core/domain';
 
 export interface EntityProps<TProps> {
   id: ID;
@@ -7,10 +7,7 @@ export interface EntityProps<TProps> {
 
 export type OrmEntityProps<OrmEntity> = Omit<OrmEntity, 'id'>;
 
-export abstract class OrmMapperBase<
-  Entity extends AggregateRoot,
-  OrmEntity,
-> {
+export abstract class OrmMapperBase<Entity extends AggregateRoot, OrmEntity> {
   constructor(
     private entityConstructor: new (id: ID, props: any) => Entity,
     private ormEntityConstructor: new () => OrmEntity,

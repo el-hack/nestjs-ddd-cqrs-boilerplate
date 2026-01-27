@@ -5,7 +5,10 @@ export interface DomainMapper<Domain, Orm> {
   toOrmEntities(domainEntities: Domain[]): Orm[];
 }
 
-export interface EventAwareMapper<Domain, Orm> extends DomainMapper<Domain, Orm> {
+export interface EventAwareMapper<Domain, Orm> extends DomainMapper<
+  Domain,
+  Orm
+> {
   toDomainWithEvents(ormEntity: Orm): Domain;
   toOrmPartial(domainEntity: Domain, existingOrm?: Orm): Partial<Orm>;
 }
