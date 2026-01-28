@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CqrsModule } from '@nestjs/cqrs';
 import { JsonWebTokenPortToken } from '@core/domain/ports/json-web-token.port';
 import { JsonWebTokenService } from './infrastructure/auth/json-web-token.service';
+import { AuthGuard } from './infrastructure/guards/auth.guard';
+import { BearerTokenGuard } from './infrastructure/guards/bearer-token.guard';
 
 @Global()
 @Module({
@@ -24,11 +26,20 @@ import { JsonWebTokenService } from './infrastructure/auth/json-web-token.servic
   ],
   providers: [
     JsonWebTokenService,
+    BearerTokenGuard,
+    AuthGuard,
     {
       provide: JsonWebTokenPortToken,
       useClass: JsonWebTokenService,
     },
   ],
-  exports: [CqrsModule, JwtModule, JsonWebTokenPortToken, JsonWebTokenService],
+  exports: [
+    CqrsModule,
+    JwtModule,
+    JsonWebTokenPortToken,
+    JsonWebTokenService,
+    BearerTokenGuard,
+    AuthGuard,
+  ],
 })
 export class CoreModule {}
