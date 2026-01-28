@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { EventAwareMapperBase } from '../../../../@core/infrastructure/mappers/event-aware-mapper.base';
 import { User, UserProps } from '../../domain/entities/user.entity';
 import { UserOrmEntity } from '../orm-entities/user.orm-entity';
 import { Email } from '../../domain/value-objects/email.value-object';

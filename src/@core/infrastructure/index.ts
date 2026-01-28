@@ -5,6 +5,7 @@ export * from './guards/roles.guard';
 export * from './decorators/roles.decorator';
 export * from './orm/base-orm.entity';
 export * from './orm/typeorm-repository.base';
+export * from './auth/json-web-token.service';
 export * from './mappers/mapper.base';
 export * from './mappers/mapper.interface';
 export * from './mappers/event-aware-mapper.base';

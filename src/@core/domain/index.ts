@@ -6,3 +6,4 @@ export * from './result';
 export * from './value-objects';
 export * from './exceptions';
 export * from './enums';
+export * from './ports';

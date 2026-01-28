@@ -1,16 +1,8 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { BaseOrmEntity } from '@core/infrastructure';
+import { Entity, Column } from 'typeorm';
 
 @Entity('users')
-export class UserOrmEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class UserOrmEntity extends BaseOrmEntity {
   @Column({ unique: true })
   email: string;
 
@@ -22,10 +14,4 @@ export class UserOrmEntity {
 
   @Column({ name: 'is_active', default: true })
   isActive: boolean;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
 }
