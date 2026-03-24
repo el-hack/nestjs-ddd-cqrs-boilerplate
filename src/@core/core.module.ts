@@ -6,6 +6,8 @@ import { JsonWebTokenPortToken } from '@core/domain/ports/json-web-token.port';
 import { JsonWebTokenService } from './infrastructure/auth/json-web-token.service';
 import { AuthGuard } from './infrastructure/guards/auth.guard';
 import { BearerTokenGuard } from './infrastructure/guards/bearer-token.guard';
+import { UnitOfWorkPortToken } from './application/ports/unit-of-work.port';
+import { TypeOrmUnitOfWorkService } from './infrastructure/orm/typeorm-unit-of-work.service';
 
 @Global()
 @Module({
@@ -31,6 +33,10 @@ import { BearerTokenGuard } from './infrastructure/guards/bearer-token.guard';
     {
       provide: JsonWebTokenPortToken,
       useClass: JsonWebTokenService,
+    },
+    {
+      provide: UnitOfWorkPortToken,
+      useClass: TypeOrmUnitOfWorkService,
     },
   ],
   exports: [
