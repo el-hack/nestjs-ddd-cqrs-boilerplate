@@ -20,6 +20,7 @@ export abstract class TypeormRepositoryBase<
   OrmEntity,
 > {
   protected readonly logger = new Logger(this.constructor.name);
+  protected correlationId?: string;
   protected readonly tableName: string;
   protected relations: string[] = [];
   protected lockOptions?: FindOneOptions<OrmEntity>['lock'];
@@ -43,6 +44,11 @@ export abstract class TypeormRepositoryBase<
 
   withWriteLock(): this {
     this.lockOptions = { mode: 'pessimistic_write' };
+    return this;
+  }
+
+  setCorrelationId(correlationId: string): this {
+    this.correlationId = correlationId;
     return this;
   }
 
